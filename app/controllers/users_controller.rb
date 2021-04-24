@@ -15,6 +15,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def account
+  end
+
   def update
   end
 

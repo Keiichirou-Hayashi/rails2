@@ -47,6 +47,8 @@ group :development do
   gem 'bcrypt'
   gem 'rails4-autocomplete'
   gem 'jquery-rails'
+  gem 'devise-i18n'
+  gem 'devise-i18n-views'
 end
 
 group :test do

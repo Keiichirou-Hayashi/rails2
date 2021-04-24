@@ -14,6 +14,9 @@ class RoomsController < ApplicationController
   def show
   end
 
+  def posts
+  end
+
   def update
   end
 
