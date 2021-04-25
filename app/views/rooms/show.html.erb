@@ -1,2 +1,21 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<%= form_for [@room, @room.reservations.new] do |f| %>
+
+<%= f.hidden_field :user_id, value: @room.id %>
+<div class="col-md-6">
+  <label>開始日</label>
+  <%= f.date_field :start_date, class: 'reservation-contents' %>
+</div>
+
+<div class="col-md-6">
+  <label>終了日</label>
+  <%= f.text_field :end_date, class: 'reservation-contents' %>
+</div>
+
+<div class="col-md-6">
+  <label>人数</label>
+  <%= f.number_field :number_of_people, class: 'reservation-contents' %>
+</div>
+
+<%= f.submit "予約する", class: "form-control btn-primary mb-4" %> 
+
+<% end %>

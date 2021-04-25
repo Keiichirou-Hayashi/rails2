@@ -2,6 +2,9 @@ class RoomsController < ApplicationController
   def index
   end
 
+  def search
+  end
+
   def create
   end
 
