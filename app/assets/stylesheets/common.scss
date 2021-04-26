@@ -37,6 +37,9 @@ a {
 a{
   color: #000;
 }
+table {
+  border-collapse: collapse;
+}
 //完成後、いらない場合は削除する
 button, input {
   overflow: visible;
@@ -296,5 +299,42 @@ label {
 //ハンバーガーメニュー
 .header-nav-menu {
   background-color: #fff;
+  
+}
+
+//reservation/index.html/erb
+
+.reservations {
+  max-width: 100vw;
+  padding: 30px 60px;
+}
+
+.pb-4 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  padding-bottom: 24px;
+}
+
+.reservations table {
+  min-width: 800px;
+}
+
+.reservations table thead tr {
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+}
+
+.reservations table thead tr th {
+  padding: 8px 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+//_host.html.erb
+
+.d-sm-inline-block {
   
 }

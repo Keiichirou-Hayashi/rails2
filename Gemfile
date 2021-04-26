@@ -49,6 +49,9 @@ group :development do
   gem 'jquery-rails'
   gem 'devise-i18n'
   gem 'devise-i18n-views'
+  gem 'carrierwave'
+  gem 'rmagick'
+  gem 'pry-rails'
 end
 
 group :test do

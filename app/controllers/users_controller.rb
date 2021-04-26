@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @usens = User.all
+    @users = User.all
+    @rooms = Rooms.all
   end
 
   def new

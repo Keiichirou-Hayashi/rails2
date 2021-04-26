@@ -19,9 +19,12 @@
             <% end %>
         </div>
         <div class="header-right-nav">
-          <div class="nav-item">
+          <div class="nav-item d-sm-inline-block">
             <%= @user.username %>
+          </div>
+          <div class="nav-item">
             <p>メニュー</p>
+          </div>
             <ul class="header-nav-menu" style="display: block;">
               <li><%= link_to "ルーム登録", new_room_path %></li>
               <li><%= link_to "予約済みルーム一覧", reservations_index_path %></li>

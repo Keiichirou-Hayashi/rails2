@@ -1,14 +1,24 @@
 class RoomsController < ApplicationController
   def index
+    @rooms = Room.all
+    @users = User.all
   end
 
   def search
   end
 
-  def create
+  def new
+    @room = Room.new
   end
 
-  def new
+  def create
+    @room = Room.new(params.require(:room).permit(:room_name, :introduction, :price, :address, :room_image, :image))
+    if @room.save
+      flash[:notice] = "ルームを登録しました。"
+      redirect_to :rooms
+    else
+      render "new"
+    end
   end
 
   def edit
@@ -25,4 +35,5 @@ class RoomsController < ApplicationController
 
   def destroy
   end
+
 end
