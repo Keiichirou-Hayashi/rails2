@@ -9,10 +9,12 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-  end
+    
+    
+   end
 
   def create
-    @room = Room.new(params.require(:room).permit(:room_name, :introduction, :price, :address, :room_image, :image))
+    @room = Room.new(params.require(:room).permit(:room_name, :introduction, :price, :address, :room_image))
     if @room.save
       flash[:notice] = "ルームを登録しました。"
       redirect_to :rooms
@@ -25,9 +27,12 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @rooms = @user.username
   end
 
   def posts
+    @rooms = Room.all
   end
 
   def update

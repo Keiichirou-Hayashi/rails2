@@ -52,6 +52,7 @@ group :development do
   gem 'carrierwave'
   gem 'rmagick'
   gem 'pry-rails'
+  gem 'rails-i18n'
 end
 
 group :test do

@@ -2,6 +2,8 @@
 
 <h2>ルーム情報登録</h2>
 
+<%= render "devise/shared/error_messages", resource: @room %>
+
 <%= form_for @room do |f| %>
     <table>
         <tr>
@@ -21,13 +23,14 @@
             <td><%= f.text_field :address, placeholder: '住所を入力' %></td>
         </tr>
         <tr>
-            <th><%= f.label :room_image ,'ルーム画像' %></th>
-            <td><%= f.text_field :room_image, placeholder: 'ルーム説明を入力' %></td>
+            <th><%= f.label :room_image, 'ルーム画像' %></th>
+            <td><%= f.file_field :room_image, placeholder: 'ルーム画像を入力'%></td>
         </tr>
     </table>
     <div>
         <ul>
             <li><%= f.submit '登録完了する' %><li>
+            <li><%= link_to "ユーザー情報一覧に戻る", :root %></li>
         </ul>
     </div>
 <% end %>
