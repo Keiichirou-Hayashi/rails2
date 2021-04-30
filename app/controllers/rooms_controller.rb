@@ -1,7 +1,11 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.all
-    @users = User.all
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result(distinct: true)
+    @users = @q.result(distinct: true)
+    if @q_header
+      @users = @q_header.result(distinct: true)
+    end
   end
 
   def search
@@ -9,8 +13,6 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    
-    
    end
 
   def create

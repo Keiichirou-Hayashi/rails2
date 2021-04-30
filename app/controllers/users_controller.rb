@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
     @rooms = Room.all
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
+    if @q_header
+      @users = @q_header.result(distinct: true)
+    end
   end
 
   def new

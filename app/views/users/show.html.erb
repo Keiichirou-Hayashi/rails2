@@ -7,9 +7,9 @@
         <div class="form-fream">
           <div class="form-area">
             <p class="form-area-title mb-4">Potepan Shareでまだ体験したことのない旅をしよう</p>
-            <%= form_with url: users_path, method: :get do |f| %>
+            <%= search_form_for @q do |f| %>
                  <%= label_tag 'エリア' %>
-                 <%= f.text_field :area, value: "", class: "form-control mb-4", placeholder: "東京" %>
+                 <%= f.search_field :area_cont, value: "", class: "form-control mb-4", placeholder: "東京" %>
                  <%= f.submit "探す", class: "form-control btn-primary mb-4", data:{disable_with: "探す"} %>
             <% end %>
           </div>

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :users do
     get :autocomplete_user_username, on: :collection
     get 'account', on: :member
-    resources :rooms
+    resource :rooms
   end
 
   resources :rooms do

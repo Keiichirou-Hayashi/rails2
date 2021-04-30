@@ -8,5 +8,5 @@ class Room < ApplicationRecord
 
   has_many :reservations
   has_many :user
-  mount_uploader :room_image, ImageUploader
+  mount_uploader :room_image, RoomImageUploader
 end

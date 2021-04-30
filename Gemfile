@@ -53,6 +53,8 @@ group :development do
   gem 'rmagick'
   gem 'pry-rails'
   gem 'rails-i18n'
+  gem 'mini_magick'
+  gem 'ransack'
 end
 
 group :test do

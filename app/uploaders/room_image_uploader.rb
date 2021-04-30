@@ -1,7 +1,6 @@
-class ImageUploader < CarrierWave::Uploader::Base
-  
+class RoomImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -21,43 +20,28 @@ class ImageUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-
+  process :resize_to_limit => [750, 750]
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
-  process :resize_to_limit => [750, 450]
-
-  process :convert => 'jpg'
-
-
-
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-   version :thumb do
-     process resize_to_limit: [50, 50]
-   end
+  version :thumb do
+    process resize_to_limit: [240,240]
+  end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-   def extension_allowlist
-     %w(jpg jpeg gif png)
-   end
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
-  #   super.chomp(File.extname(super)) + '.jpg'
-  # end
-
-  # def filedate
-  #
-  #  if original_filename.present?
-  #    time = Time.now
-  #    date = date.strftime('%Y%m%d%H%M%S') + '.jpg'
-  #    date.downcase
-  #  end
+  #   "something.jpg" if original_filename
   # end
 end

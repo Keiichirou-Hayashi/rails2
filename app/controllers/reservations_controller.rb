@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
   def new
   end
 
-  def create
+  def create!
     @reservation = current_user.reservations.create(reservation_params)
     redirect_to root_path notice:"予約を完了しました。"
   end
