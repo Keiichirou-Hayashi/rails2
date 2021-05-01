@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :reservations, dependent: :destroy
   belongs_to :room
+  has_many :rooms
 end

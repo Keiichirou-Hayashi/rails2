@@ -1,0 +1,11 @@
+<h2>検索結果</h2>
+
+<% @rooms.each do |room| %>
+<div class="col-sm-6 col-lg-4 col-xl-3">
+  <div class="room-frame-inner">
+  
+  <%= link_to (image_tag "#{room.room_image}"), room_path(room.id) %>
+
+  <% end %>
+  </div>
+</div>

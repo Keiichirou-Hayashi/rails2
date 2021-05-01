@@ -4,7 +4,7 @@
             <a href="/">
               <img alt="ロゴの画像" src="/assets/logo.png">
             </a>
-            <%= search_form_for @q_header, url: users_index_path  do |f| %>
+            <%= form_with(scope: :search, url: users_path, method: :get, local: true) do |f| %>
               <div class="header-sharch d-lg-inline-block d-none">
                 <%= f.search_field :area_cont, class: "form-control", placeholder: "エリア" %>
                 <i class="fas fa-map-marker-alt">

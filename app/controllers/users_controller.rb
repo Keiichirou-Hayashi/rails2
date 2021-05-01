@@ -1,25 +1,26 @@
 class UsersController < ApplicationController
+
+  before_action :set_q, only: [:index, :serach]
+
   def index
+    @users = User.all
     @rooms = Room.all
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
-    if @q_header
-      @users = @q_header.result(distinct: true)
-    end
   end
 
   def new
     @user = User.new
+    @room = Room.new
   end
 
   def create
   end
 
   def edit
+    @room = Room.find(params[:id])
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.new
   end
 
   def account
@@ -29,6 +30,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def search
+    @results = @q.result
+    
+  end
+
+  private
+
+  def set_q
+    @q = User.ransack(params[:q])
   end
 
 end

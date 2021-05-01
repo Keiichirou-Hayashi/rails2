@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   autocomplete :user, :username, full: true
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_q_for_user
+  before_action :set_search
 
   def after_sign_in_path_for(resource)
     user_path(resource.id)
@@ -12,8 +12,9 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def set_q_for_user
-    @q_header = User.ransack.(params[:q])
+  def set_search
+    @search = User.ransack(params[:q])
+    @users = @search.result
   end
 
   protected
