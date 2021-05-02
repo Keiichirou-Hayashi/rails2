@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
 
-  before_action :set_q, only: [:index, :serach]
+  before_action :set_search, only: [:index, :serach, :show]
+  before_action :set_search_header, only: [:index, :show, :search, :account]
 
   def index
     @users = User.all
     @rooms = Room.all
+    @users = @search.result(distinct: true)
   end
 
   def new
@@ -34,13 +36,19 @@ class UsersController < ApplicationController
 
   def search
     @results = @q.result
-    
   end
 
   private
 
-  def set_q
-    @q = User.ransack(params[:q])
+  def set_search
+    @search = User.ransack(params[:q])
+  end
+
+  def set_search_header
+    @search_header = User.ransack(params[:q])
+    if @search_header
+      @users = @search_header.result(distinct: true)
+    end
   end
 
 end

@@ -55,6 +55,8 @@ group :development do
   gem 'rails-i18n'
   gem 'mini_magick'
   gem 'ransack'
+  gem 'bootstrap'
+  gem 'popper_js'
 end
 
 group :test do

@@ -2,6 +2,14 @@
 
 class Users::SessionsController < Devise::SessionsController
    #before_action :configure_sign_in_params, only: [:create]
+   before_action :set_search_header, only: [:new]
+
+   def set_search_header
+    @search_header = User.ransack(params[:q])
+    if @search_header
+      @users = @search_header.result(distinct: true)
+    end
+   end
 
    #GET /resource/sign_in
     #def new

@@ -8,16 +8,18 @@ Rails.application.routes.draw do
   } 
 
   devise_scope :user do
-    get "sign_in", :to => "users/sessions#new"
-    get "sign_out", :to => "users/sessions#destroy" 
+    get 'sign_in', :to => "users/sessions#new"
+    get 'sign_out', :to => "users/sessions#destroy" 
   end
 
 
   resources :users, only: [:show]
   
+
   get 'rooms/index'
   get 'rooms/show'
   get 'users/index'
+  get 'rooms/posts', to: 'rooms#posts'
 
   resources :users do
     get :autocomplete_user_username, on: :collection
@@ -26,8 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
-    resources :reservations
-    get 'posts', on: :member
+    get 'posts', on: :collection
     get 'search', on: :member
   end
   

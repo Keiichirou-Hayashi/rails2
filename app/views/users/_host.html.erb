@@ -1,0 +1,40 @@
+<header class="header">
+      <div class="header-inner">
+        <div class="header-left-nav">
+            <a href="user">
+              <img alt="ロゴの画像" src="/assets/logo.png">
+            </a>
+            
+            <%= search_form_for(@search_header, url: users_path) do |f| %>
+              <div class="header-sharch d-lg-inline-block d-none">
+                <%= f.search_field :area_cont, class: "form-control", placeholder: "エリア" %>
+                <i class="fas fa-map-marker-alt">
+                </i>
+              </div>
+              <div class="header-sharch d-lg-inline-block d-none">
+                <%= f.search_field :keyword_cont, class: "form-control", placeholder: "キーワード" %>
+                <i class="fas fa-search">
+                </i>
+              </div>
+              <%= f.submit "", class: "d-none", data:{disable_with: ""} %>
+            <% end %>
+        </div>
+        <div class="header-right-nav">
+          <div class="nav-item d-sm-inline-block">
+            <%= current_user.username %>
+          </div>
+          <div class="nav-item">
+            <p>メニュー</p>
+          </div>
+            <ul class="header-nav-menu" style="display: block;">
+              <li><%= link_to "ルーム登録", new_room_path %></li>
+              <li><%= link_to "予約済みルーム一覧", reservations_index_path %></li>
+              <li><%= link_to "登録済みルーム一覧",  posts_rooms_path %></li>
+              <li><%= link_to "設定", account_user_path(current_user.id) %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    

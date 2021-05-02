@@ -2,6 +2,10 @@ class ReservationsController < ApplicationController
   def index
     @users = User.all
     @rooms = Room.all
+    @search_header = User.ransack(params[:q])
+    if @search_header
+      @users = @search_header.result(distinct: true)
+    end
   end
 
   def new

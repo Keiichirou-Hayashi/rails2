@@ -1,7 +1,12 @@
 class RoomsController < ApplicationController
+
+  before_action :set_search_header, only: [:index, :new, :posts]
+
   def index
     @rooms = Room.all
     @users = User.all
+    @search = Room.ransack(params[:q])
+    @rooms = @search.result(distinct: true)
   end
 
   def search
@@ -9,7 +14,6 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    @user = User.new
    end
 
   def create
@@ -34,6 +38,7 @@ class RoomsController < ApplicationController
 
   def posts
     @rooms = Room.all
+    @users = User.all
   end
 
   def update
@@ -46,10 +51,11 @@ class RoomsController < ApplicationController
     @results = @q.result
   end
 
-  private
-
-  def set_q
-    @q = User.ransack(params[:q])
+  def set_search_header
+    @search_header = User.ransack(params[:q])
+    if @search_header
+      @users = @search_header.result(distinct: true)
+    end
   end
 
 end

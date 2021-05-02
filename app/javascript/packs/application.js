@@ -6,6 +6,9 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require autocomplete-rails
+//= require jquery3
+//= require popper
+//= require bootstrap
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
