@@ -1,23 +1,23 @@
 <header class="header">
       <div class="header-inner">
         <div class="header-left-nav">
-            <a href="user">
-              <img alt="ロゴの画像" src="/assets/logo.png">
+          <%= link_to user_path(current_user.id) do %>
+              <%= image_tag "logo.png", alt: "ロゴの画像" %>
             </a>
-            
-            <%= search_form_for(@search_header, url: users_path) do |f| %>
-              <div class="header-sharch d-lg-inline-block d-none">
-                <%= f.search_field :area_cont, class: "form-control", placeholder: "エリア" %>
-                <i class="fas fa-map-marker-alt">
-                </i>
-              </div>
-              <div class="header-sharch d-lg-inline-block d-none">
-                <%= f.search_field :keyword_cont, class: "form-control", placeholder: "キーワード" %>
-                <i class="fas fa-search">
-                </i>
-              </div>
-              <%= f.submit "", class: "d-none", data:{disable_with: ""} %>
-            <% end %>
+          <% end %>
+          <%= search_form_for(@search_header) do |f| %>
+            <div class="header-sharch d-lg-inline-block d-none">
+              <%= f.search_field :area_cont, class: "form-control", placeholder: "エリア" %>
+              <i class="fas fa-map-marker-alt">
+              </i>
+            </div>
+            <div class="header-sharch d-lg-inline-block d-none">
+              <%= f.search_field :keyword_cont, class: "form-control", placeholder: "キーワード" %>
+              <i class="fas fa-search">
+              </i>
+            </div>
+            <%= f.submit "", class: "d-none", data:{disable_with: ""} %>
+          <% end %>
         </div>
         <div class="header-right-nav">
           <div class="nav-item d-sm-inline-block">

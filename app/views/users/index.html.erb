@@ -1,12 +1,25 @@
+<%= render 'users/host' %>
+
 <h2>検索結果</h2>
 
-<% @rooms.each do |room| %>
-<div class="col-sm-6 col-lg-4 col-xl-3">
-  <div class="room-frame-inner">
-    <div class="d-flex">
-      <%= link_to (image_tag "#{room.room_image}"), room_path(room.id) %>
-
-      <% end %>
+<div class="row">
+  <% @rooms.each do |room| %>
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="room-frame-inner">
+        <div class="d-flex"> 
+          <%= link_to room_path(room.id) do %>
+            <div class="room-image-out">
+              <%= image_tag room.room_image.thumb.url, alt: "部屋画像" ,class: "room-image" %>
+              <div class="room-profile">
+                <p class="room-profile-name"><%= room.room_name %></p>
+                <p class="room-profile-city"><%= room.address %></p>
+                <p class="room-profile-price price-icon"><%= room.price %></p>
+              </div>
+            </div>
+            </a>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.new
+    @user = User.find(params[:id])
   end
 
   def account

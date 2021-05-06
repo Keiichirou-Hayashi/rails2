@@ -28,9 +28,13 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
+    resources :reservations
     get 'posts', on: :collection
     get 'search', on: :member
+    get 'confirm', on: :member
   end
+
+  
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

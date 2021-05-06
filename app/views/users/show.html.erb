@@ -8,9 +8,9 @@
           <div class="form-area">
             <p class="form-area-title mb-4">Potepan Shareでまだ体験したことのない旅をしよう</p>
             <%= search_form_for @search do |f| %>
-                 <%= label_tag 'エリア' %>
-                 <%= f.search_field :area_cont, value: "", class: "form-control mb-4", placeholder: "東京" %>
-                 <%= f.submit "探す", class: "form-control btn-primary mb-4", data:{disable_with: "探す"} %>
+              <%= label_tag 'エリア' %>
+              <%= f.search_field :area_cont, value: "", class: "form-control mb-4", placeholder: "東京" %>
+              <%= f.submit "探す", class: "form-control btn-primary mb-4", data:{disable_with: "探す"} %>
             <% end %>
           </div>
         </div>

@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
 
-  before_action :set_search_header, only: [:index, :new, :posts]
+  before_action :set_search_header, only: [:index, :new, :posts, :show, :create]
 
   def index
     @rooms = Room.all
@@ -14,15 +14,15 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-   end
+  end 
 
   def create
-    @room = Room.new(params.require(:room).permit(:room_name, :introduction, :price, :address, :room_image))
+    @room = Room.new(room_params)
     if @room.save
-      flash[:notice] = "ルームを登録しました。"
-      redirect_to :rooms
+      flash[:notice] = "新規登録しました"
+      redirect_to controller: :users, action: :show, id: current_user
     else
-      render "new"
+      render :new
     end
   end
 
@@ -33,7 +33,6 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @user = User.find(params[:id])
-    @rooms = @user.username
   end
 
   def posts
@@ -51,11 +50,17 @@ class RoomsController < ApplicationController
     @results = @q.result
   end
 
+  private
+
   def set_search_header
     @search_header = User.ransack(params[:q])
     if @search_header
       @users = @search_header.result(distinct: true)
     end
+  end
+
+  def room_params
+    params.require(:room).permit(:room_name, :introduction, :price, :address, :room_image)
   end
 
 end
