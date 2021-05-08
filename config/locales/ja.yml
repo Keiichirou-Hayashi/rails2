@@ -1,5 +1,15 @@
 ja:
   activerecord:
+   models:
+    room: ルーム
+   attributes:
+    room:
+     room_name: ルーム名
+     introduction: ルーム説明
+     price: 料金
+     address: 住所
+     room_image: ルーム画像
+     
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

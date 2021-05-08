@@ -32,7 +32,6 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @user = User.find(params[:id])
   end
 
   def posts
