@@ -57,6 +57,7 @@ group :development do
   gem 'ransack'
   gem 'bootstrap'
   gem 'popper_js'
+  gem 'simple_form'
 end
 
 group :test do

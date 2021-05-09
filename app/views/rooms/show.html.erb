@@ -1,5 +1,10 @@
-<%= render 'users/host' %>
+<% if user_signed_in? %>
+  <%= render 'users/host' %>
+<% else %>
+  <%= render 'users/guest' %>
+<% end %>
 
+<%= render "devise/shared/error", obj: @room %>
 
 <div class="raw">
   <%= form_for(@room, url: new_room_reservation_path(@room.id)) do |f| %>

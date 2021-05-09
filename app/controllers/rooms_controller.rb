@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     if @room.save
       flash[:notice] = "新規登録しました"
-      redirect_to controller: :users, action: :show, id: current_user
+      redirect_to user_path(current_user.id)
     else
       render :new
     end

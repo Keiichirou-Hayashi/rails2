@@ -4,16 +4,24 @@ class ReservationsController < ApplicationController
 
   def index
     @users = User.all
-    @rooms = Room.all
+    @room = Room.find(params[:id])
+    @reservations = Reservation.all
   end
 
   def new
-    @room = Room.find(params[:id])
+    @room = Room.new
+    @reservation = Reservation.new
   end
 
   def create!
-    @reservation = current_user.reservations.create(reservation_params)
-    redirect_to root_path notice:"予約を完了しました。"
+    @reservation = Reservation.new(reservation_params)
+    @room = Room.find(params[:id])
+    if @reservation.save
+      flash[:notice] = "予約を完了しました"
+      redirect_to room_reservations_path(@room.id)
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -32,7 +40,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :user_id)
+    params.require(:reservation).permit(:start_date, :end_date, :number_of_people, :confirming)
   end
 
 end

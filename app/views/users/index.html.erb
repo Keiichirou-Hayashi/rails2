@@ -1,4 +1,8 @@
-<%= render 'users/host' %>
+<% if user_signed_in? %>
+  <%= render 'users/host' %>
+<% else %>
+  <%= render 'users/guest' %>
+<% end %>
 
 <h2>検索結果</h2>
 

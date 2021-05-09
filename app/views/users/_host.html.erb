@@ -1,7 +1,7 @@
 <header class="header">
       <div class="header-inner">
         <div class="header-left-nav">
-          <%= link_to root_path do %>
+          <%= link_to user_path(current_user.id) do %>
               <%= image_tag "logo.png", alt: "ロゴの画像" %>
             </a>
           <% end %>

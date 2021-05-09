@@ -1,1 +1,59 @@
 <%= render 'users/host' %>
+
+<div class="raw">
+<%= form_for(@room, url: room_reservations_path(@room.id)) do |f| %>
+  <% if @reservation.confirming.blank? %>
+  <div class="d-flex">
+
+    <%= f.hidden_field :id, value: @room.id %>
+    <div class="col-md-6">
+      <label>開始日</label>
+      <%= f.date_field :start_date, class: 'reservation-contents' %>
+    </div>
+    <div class="col-md-6">
+      <label>終了日</label>
+      <%= f.date_field :end_date, class: 'reservation-contents' %>
+    </div>
+    <div class="col-md-6">
+      <label>人数</label>
+      <%= f.number_field :number_of_people, class: 'reservation-contents' %>
+    </div>
+    <%= f.submit "予約する", class: 'form-control btn-primary mb-4' %> 
+
+  </div>
+  <% else %>
+    <table>
+      <tr>
+        <th>開始日</th>
+        <td><%= @room&.start_date&.strftime("%Y年%m月%d日") %></td>
+      </tr>
+      <tr>
+        <th>終了日</th>
+        <td><%= @room&.end_date&.strftime("%Y年%m月%d日") %></td>
+      </tr>
+      <tr>
+        <th>使用日数</th>
+        <td><%= @room&.end_date&.strftime("%Y年%m月%d日") - @room&.start_date&.strftime("%Y年%m月%d日") %>日</td>
+      </tr>
+      <tr>
+        <th>人数</th>
+        <td><%= @room.number_of_people %>人</td>
+      </tr>
+      <tr>
+        <th>合計金額</th>
+        <td><%= @room.total_price %>円</td>
+      </tr>
+    </table>
+    <div class="form-input">
+      <%= f.hidden_field :start_date&.strftime("%Y年%m月%d日") %>
+      <%= f.hidden_field :end_date&.strftime("%Y年%m月%d日") %>
+      <%= f.hidden_field :end_date&.strftime("%Y年%m月%d日") - :start_date&.strftime("%Y年%m月%d日") %>
+      <%= f.hidden_field :number_of_people %>
+      <%= f.hidden_field :total_price %>
+    </div>
+    <p>上記内容でよろしければ「予約を確定」を押してください</p>
+    <div class="form-control btn-primary mb-4"> 
+      <%= f.button :submit, '予約を確定' %>
+    </div>
+  <% end %>
+<% end %>
