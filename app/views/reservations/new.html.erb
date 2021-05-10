@@ -1,7 +1,7 @@
 <%= render 'users/host' %>
 
 <div class="raw">
-<%= form_for(@room, url: room_reservations_path(@room.id)) do |f| %>
+<%= form_for @room do |f| %>
   <% if @reservation.confirming.blank? %>
   <div class="d-flex">
 
@@ -41,19 +41,21 @@
       </tr>
       <tr>
         <th>合計金額</th>
-        <td><%= @room.total_price %>円</td>
+        <td><%= @room.price * @room.number_of_people %>円</td>
       </tr>
     </table>
     <div class="form-input">
-      <%= f.hidden_field :start_date&.strftime("%Y年%m月%d日") %>
-      <%= f.hidden_field :end_date&.strftime("%Y年%m月%d日") %>
-      <%= f.hidden_field :end_date&.strftime("%Y年%m月%d日") - :start_date&.strftime("%Y年%m月%d日") %>
-      <%= f.hidden_field :number_of_people %>
-      <%= f.hidden_field :total_price %>
-    </div>
-    <p>上記内容でよろしければ「予約を確定」を押してください</p>
-    <div class="form-control btn-primary mb-4"> 
-      <%= f.button :submit, '予約を確定' %>
-    </div>
+      <%= form_for @room do |f| %>
+        <%= f.hidden_field :start_date&.strftime("%Y年%m月%d日") %>
+        <%= f.hidden_field :end_date&.strftime("%Y年%m月%d日") %>
+        <%= f.hidden_field :end_date&.strftime("%Y年%m月%d日") - :start_date&.strftime("%Y年%m月%d日") %>
+        <%= f.hidden_field :number_of_people %>
+        <%= f.hidden_field :total_price %>
+      </div>
+      <p>上記内容でよろしければ「予約を確定」を押してください</p>
+      <div class="form-control btn-primary mb-4"> 
+        <%= f.button :submit, '予約を確定' %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

@@ -4,10 +4,10 @@
   <%= render 'users/guest' %>
 <% end %>
 
-<%= render "devise/shared/error", obj: @room %>
+
 
 <div class="raw">
-  <%= form_for(@room, url: new_room_reservation_path(@room.id)) do |f| %>
+  <%= form_for(@room, url: room_reservation_path(current_user.id, @room.id)) do |f| %>
 
   <div class="d-flex">
 

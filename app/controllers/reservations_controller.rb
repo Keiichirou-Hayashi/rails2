@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @room = Room.new
+    @room = Room.find(params[:id])
     @reservation = Reservation.new
   end
 
@@ -18,7 +18,7 @@ class ReservationsController < ApplicationController
     @room = Room.find(params[:id])
     if @reservation.save
       flash[:notice] = "予約を完了しました"
-      redirect_to room_reservations_path(@room.id)
+      redirect_to room_reservation_path(@room.id)
     else
       render 'new'
     end
@@ -28,6 +28,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    @room = Room.find(params[:id])
   end
 
   private

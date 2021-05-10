@@ -1,0 +1,41 @@
+<%= render 'users/host' %>
+<%= form_for @room do |f| %>
+  <div class="container-fiuld user">
+    <div class="row">
+      <div class="d-flex">
+        <div class="col-md-12 user-view">
+          <div class="user-view-box">
+            <% @rooms.each do |room| %>
+              <div class="update-content">
+                <div class="row">
+                  <div class="d-flex">
+                    <%= f.label :room_name, '予約した部屋', class: 'col-md-3' %>
+                    <%= link_to room.room_name(room.id), room_path(room.id), class: "col-md-9" %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="d-flex">
+                    <%= f.label :start_date, '開始日', class: 'col-md-3' %>
+                    <%= room.start_date(room.id), class: 'col-md-9' %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="d-flex">
+                    <%= f.label :end_date ,'終了日', class: 'col-md-3' %>
+                    <%= room.end_date(room.id), class: 'col-md-9' %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="d-flex">
+                    <%= f.label :total_price ,'価格', class: 'col-md-3' %>
+                    <%= room.price * room.number_of_people(room.id), class: 'col-md-9' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
