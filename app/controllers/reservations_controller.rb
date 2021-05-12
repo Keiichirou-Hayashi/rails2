@@ -1,26 +1,24 @@
 class ReservationsController < ApplicationController
 
-  before_action :set_search_header, only: [:index, :new, :posts, :show]
+  before_action :set_search_header, only: [:index, :new, :posts, :show, :create]
 
   def index
     @users = User.all
-    @room = Room.find(params[:id])
     @reservations = Reservation.all
   end
 
   def new
-    @room = Room.find(params[:id])
+    @room = Room.new
     @reservation = Reservation.new
   end
 
-  def create!
+  def create
     @reservation = Reservation.new(reservation_params)
-    @room = Room.find(params[:id])
     if @reservation.save
       flash[:notice] = "予約を完了しました"
       redirect_to room_reservation_path(@room.id)
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -28,6 +26,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @room = Room.find(params[:id])
   end
 

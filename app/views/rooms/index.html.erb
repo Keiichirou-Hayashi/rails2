@@ -1,4 +1,9 @@
-<%= render 'users/guest' %>
+<% if user_signed_in? %>
+  <%= render 'users/host' %>
+<% else %>
+  <%= render 'users/guest' %>
+<% end %>
+
 <div class="top">
   <div class="top-main">
     <div class="container">

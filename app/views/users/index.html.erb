@@ -11,7 +11,7 @@
     <div class="col-sm-6 col-lg-4 col-xl-3">
       <div class="room-frame-inner">
         <div class="d-flex"> 
-          <%= link_to room_path(room.id) do %>
+          <%= link_to new_room_reservation_path(room.id) do %>
             <div class="room-image-out">
               <%= image_tag room.room_image.thumb.url, alt: "部屋画像" ,class: "room-image" %>
               <div class="room-profile">

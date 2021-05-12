@@ -6,10 +6,14 @@ class Room < ApplicationRecord
   validates :address, presence: true
   validates :room_image, presence: true
 
-  with_options on: :show do
-    validates :start_date, presence: true
-    validates :end_date, presence: true
-    validates :number_of_people, presence: true
+  
+
+  validates_acceptance_of :confirming
+  after_validation :check_confirming
+
+  def check_confirming
+    errors.delete(:confirming)
+    self.confirming = errors.empty? ? '1' : ''
   end
 
   has_many :reservations
