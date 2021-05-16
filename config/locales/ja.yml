@@ -1,22 +1,19 @@
 ja:
   activerecord:
-   models:
-    rooms: ルーム
-    reservations: 予約
-   attributes:
-    rooms:
-     room_name: ルーム名
-     introduction: ルーム説明
-     price: 料金
-     address: 住所
-     room_image: ルーム画像
-    reservations:
-     start_date: 開始日
-     end_date: 終了日
-     number_of_people: 人数
+    attributes:
+      rooms:
+        room_name: ルーム名
+        introduction: ルーム説明
+        price: 料金
+        address: 住所
+        room_image: ルーム画像
+      reservation:
+        start_date: 開始日
+        end_date: 終了日
+        number_of_people: 人数
     errors:
       messages:
-      record_invalid: 'バリデーションに失敗しました: %{errors}'
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"

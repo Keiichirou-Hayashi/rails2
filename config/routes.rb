@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   resources :users do
     get :autocomplete_user_username, on: :collection
     get 'account', on: :member
-    resources :rooms
+    resources :rooms do
+      resources :reservations
+    end
   end
 
   resources :rooms do
@@ -34,11 +36,7 @@ Rails.application.routes.draw do
     get 'confirm', on: :member
   end
 
-  resources :reservations do
-    collection do
-      post :confirm
-    end
-  end
+  resources :reservations
   
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

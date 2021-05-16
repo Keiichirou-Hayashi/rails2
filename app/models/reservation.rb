@@ -8,11 +8,4 @@ class Reservation < ApplicationRecord
     validates :number_of_people
   end
 
-  validates_acceptance_of :confirming
-  after_validation :check_confirming
-
-  def check_confirming
-    errors.delete(:confirming)
-    self.confirming = errors.empty? ? '1' : ''
-  end
 end

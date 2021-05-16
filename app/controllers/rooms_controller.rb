@@ -14,6 +14,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    @user = User.find(params[:id])
   end 
 
   def create
@@ -58,7 +59,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:room_name, :introduction, :price, :address, :room_image_cache)
+    params.require(:room).permit(:room_name, :introduction, :price, :address, :room_image)
   end
 
 end

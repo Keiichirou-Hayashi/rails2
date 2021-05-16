@@ -1,41 +1,53 @@
 <%= render 'users/host' %>
-<%= form_for @room do |f| %>
   <div class="container-fiuld user">
     <div class="row">
       <div class="d-flex">
         <div class="col-md-12 user-view">
           <div class="user-view-box">
-            <% @rooms.each do |room| %>
-              <div class="update-content">
-                <div class="row">
-                  <div class="d-flex">
-                    <%= f.label :room_name, '予約した部屋', class: 'col-md-3' %>
-                    <%= link_to room.room_name(room.id), room_path(room.id), class: "col-md-9" %>
+            <% form_with(model: @reservation) do |f| %>
+              <% @reservations.each do |reservation| %>
+                <div class="update-content">
+                  <div class="row">
+                    <div class="d-flex">
+                      <%= f.label :room_name, '予約した部屋', class: 'col-md-3' %>
+                      <%= link_to reservation.room_name, user_room_path(@room.id), class: "col-md-9" %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="d-flex">
+                      <%= f.label :start_date, '開始日', class: 'col-md-3' %>
+                      <div class="ol-md-9">
+                        <%= reservation.start_date %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="d-flex">
+                      <%= f.label :end_date ,'終了日', class: 'col-md-3' %>
+                      <div class="ol-md-9">
+                        <%= reservation.end_date %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="d-flex">
+                      <%= f.label :total_price ,'価格', class: 'col-md-3' %>
+                      <div class="ol-md-9">
+                        <%= reservation.price * reservation.number_of_people %>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="d-flex">
-                    <%= f.label :start_date, '開始日', class: 'col-md-3' %>
-                    <%= room.start_date(room.id), class: 'col-md-9' %>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="d-flex">
-                    <%= f.label :end_date ,'終了日', class: 'col-md-3' %>
-                    <%= room.end_date(room.id), class: 'col-md-9' %>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="d-flex">
-                    <%= f.label :total_price ,'価格', class: 'col-md-3' %>
-                    <%= room.price * room.number_of_people(room.id), class: 'col-md-9' %>
-                  </div>
-                </div>
-              </div>
+              <% end %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
-<% end %>
+  <div>
+      <ul>
+          <li><%= f.submit '登録完了する' %><li>
+          <li><%= link_to "トップ画面に戻る", user_path(current_user.id) %></li>
+      </ul>
+  </div>

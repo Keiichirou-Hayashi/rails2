@@ -4,30 +4,34 @@ class ReservationsController < ApplicationController
 
   def index
     @users = User.all
+    @rooms = Room.all
     @reservations = Reservation.all
   end
 
   def new
+    @user = User.new
     @room = Room.new
+    #@reservation = current_user.reservations.new
     @reservation = Reservation.new
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
+    binding.pry
       flash[:notice] = "予約を完了しました"
-      redirect_to room_reservation_path(@room.id)
+      redirect_to user_room_reservation_path(id: @reservation.id)
     else
       render :new
     end
   end
 
-  def update
+  def show
+    @user = User.find(params[:user_id])
+    @room = Room.find(params[:room_id])
   end
 
-  def show
-    @user = User.find(params[:id])
-    @room = Room.find(params[:id])
+  def update
   end
 
   private
@@ -40,7 +44,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :number_of_people, :confirming)
+    params.permit(:user_id, :room_id, :start_date, :end_date, :number_of_people, :total_price,)
   end
 
 end

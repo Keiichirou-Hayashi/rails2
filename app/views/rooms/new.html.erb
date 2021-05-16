@@ -26,7 +26,6 @@
             <%= image_tag(@room.room_image.thumb.url) if @room.room_image? %>
             <th><%= f.label :room_image, 'ルーム画像' %></th>
             <td><%= f.file_field :room_image, placeholder: 'ルーム画像を入力' %></td>
-            <%= f.hidden_field :room_image_cache %>
         </tr>
     </table>
     <div>
