@@ -54,10 +54,11 @@ group :development do
   gem 'pry-rails'
   gem 'rails-i18n'
   gem 'mini_magick'
-  gem 'ransack'
+  gem 'ransack', '2.4.1'
   gem 'bootstrap'
   gem 'popper_js'
   gem 'simple_form'
+  gem 'kaminari'
 end
 
 group :test do

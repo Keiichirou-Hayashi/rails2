@@ -1,53 +1,35 @@
-<%= render 'users/host' %>
+
   <div class="container-fiuld user">
     <div class="row">
       <div class="d-flex">
         <div class="col-md-12 user-view">
-          <div class="user-view-box">
-            <% form_with(model: @reservation) do |f| %>
-              <% @reservations.each do |reservation| %>
-                <div class="update-content">
-                  <div class="row">
-                    <div class="d-flex">
-                      <%= f.label :room_name, '予約した部屋', class: 'col-md-3' %>
-                      <%= link_to reservation.room_name, user_room_path(@room.id), class: "col-md-9" %>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="d-flex">
-                      <%= f.label :start_date, '開始日', class: 'col-md-3' %>
-                      <div class="ol-md-9">
-                        <%= reservation.start_date %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="d-flex">
-                      <%= f.label :end_date ,'終了日', class: 'col-md-3' %>
-                      <div class="ol-md-9">
-                        <%= reservation.end_date %>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="d-flex">
-                      <%= f.label :total_price ,'価格', class: 'col-md-3' %>
-                      <div class="ol-md-9">
-                        <%= reservation.price * reservation.number_of_people %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
+          <div class="user-view-box"> 
+            <table>
+              <tr class="update-content">
+                <th>予約した部屋</th>
+                <td><%= @reservation.room.room_name %></td>
+              </tr>
+              <tr class="update-content">
+                <th>開始日</th>
+                <td><%= @reservation.start_date&.strftime("%Y年%m月%d日") %></td>
+              </tr>
+              <tr class="update-content">
+                <th>終了日</th>
+                <td><%= @reservation.end_date&.strftime("%Y年%m月%d日") %></td>
+              </tr>
+              <tr class="update-content">
+                <th>価格</th>
+                <td><%= ("#{@reservation.room.price * @reservation.number_of_people}") %></td>
+              </tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div>
+    <div>
       <ul>
-          <li><%= f.submit '登録完了する' %><li>
-          <li><%= link_to "トップ画面に戻る", user_path(current_user.id) %></li>
+        <li><%= link_to "トップ画面に戻る", user_path(current_user.id), class: "return_to_top" %></li>
       </ul>
+    </div>
   </div>

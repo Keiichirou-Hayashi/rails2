@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'reservations/index'
-  root 'rooms#index'
+  root 'users#index'
+  get 'search', to: 'rooms#search'
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   get 'rooms/show'
   get 'users/index'
   get 'rooms/posts', to: 'rooms#posts'
+  
 
   resources :users do
     get :autocomplete_user_username, on: :collection

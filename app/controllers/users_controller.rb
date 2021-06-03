@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
 
-  before_action :set_search, only: [:index, :serach, :show]
-  before_action :set_search_header, only: [:index, :show, :search, :account]
+ 
 
   def index
-    @users = User.all
-    @rooms = Room.all
+    @search = User.ransack(params[:search])
     @users = @search.result(distinct: true)
+    @rooms = Room.all
   end
 
   def new
@@ -22,7 +21,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def account
@@ -35,20 +33,22 @@ class UsersController < ApplicationController
   end
 
   def search
-    @results = @q.result
+    @rooms = Room.all
+    @q = User.search(search_params)
+    @students = @q.result(distinct: true)
   end
 
   private
-
-  def set_search
-    @search = User.ransack(params[:q])
-  end
 
   def set_search_header
     @search_header = User.ransack(params[:q])
     if @search_header
       @users = @search_header.result(distinct: true)
     end
+  end
+
+  def search_params
+    params.require(:q).permit!
   end
 
 end

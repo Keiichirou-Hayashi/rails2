@@ -1,40 +1,42 @@
 <header class="header">
-      <div class="header-inner">
-        <div class="header-left-nav">
-          <%= link_to user_path(current_user.id) do %>
-              <%= image_tag "logo.png", alt: "ロゴの画像" %>
-            </a>
-          <% end %>
-          <%= search_form_for(@search_header) do |f| %>
-            <div class="header-sharch d-lg-inline-block d-none">
-              <%= f.search_field :area_cont, class: "form-control", placeholder: "エリア" %>
-              <i class="fas fa-map-marker-alt">
-              </i>
-            </div>
-            <div class="header-sharch d-lg-inline-block d-none">
-              <%= f.search_field :keyword_cont, class: "form-control", placeholder: "キーワード" %>
-              <i class="fas fa-search">
-              </i>
-            </div>
-            <%= f.submit "", class: "d-none", data:{disable_with: ""} %>
-          <% end %>
+  <div class="header-inner">
+    <div class="header-left-nav">
+      <%= link_to user_path(current_user.id) do %>
+          <%= image_tag "logo.png", alt: "ロゴの画像" %>
+        </a>
+      <% end %>
+      <%= search_form_for @q, url: search_room_path(id:current_user.id) do |f| %>
+        <div class="header-sharch d-lg-inline-block d-none">
+          <%= f.search_field :rooms_address_cont, class: "form-control", placeholder: "エリア" %>
+          <i class="fas fa-map-marker-alt">
+          </i>
         </div>
-        <div class="header-right-nav">
-          <div class="nav-item d-sm-inline-block">
-            <%= current_user.username %>
-          </div>
-          <div class="nav-item">
-            <p>メニュー</p>
-          </div>
-            <ul class="header-nav-menu" style="display: block;">
-              <li><%= link_to "ルーム登録", new_room_path %></li>
-              <li><%= link_to "予約済みルーム一覧", reservations_index_path %></li>
-              <li><%= link_to "登録済みルーム一覧",  posts_rooms_path %></li>
-              <li><%= link_to "設定", account_user_path(current_user.id) %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </div>
+        <div class="header-sharch d-lg-inline-block d-none">
+          <%= f.search_field :rooms_introduction_cont, class: "form-control", placeholder: "キーワード" %>
+          <i class="fas fa-search">
+          </i>
         </div>
+        <%= f.submit "", class: "d-none", data:{disable_with: ""} %>
+      <% end %>
+    </div>
+    <div class="dropdown">
+      <div class="header-right-nav">
+        <div class="nav-item d-sm-inline-block">
+          <%= current_user.username %>
+        </div>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="btnOpenMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <p>メニュー</p>
+        </button>
+        <nav class="nav">
+          <ul class="dropdown-menu" aria-labelledby="btnOpenButton" style= display: block;>
+            <li><%= link_to "ルーム登録", new_room_path, class: "dropdown-item" %></li>
+            <li><%= link_to "予約済みルーム一覧", reservations_index_path, class: "dropdown-item" %></li>
+            <li><%= link_to "登録済みルーム一覧",  posts_rooms_path, class: "dropdown-item" %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+          </ul>
+        </nav>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
     

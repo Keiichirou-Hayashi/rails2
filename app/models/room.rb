@@ -17,7 +17,6 @@ class Room < ApplicationRecord
   end
 
   has_many :reservations
-  has_many :users
   belongs_to :user, optional: true
   mount_uploader :room_image, RoomImageUploader
 end

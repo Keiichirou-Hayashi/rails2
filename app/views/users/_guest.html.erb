@@ -4,14 +4,14 @@
             <a href="/">
               <img alt="ロゴの画像" src="/assets/logo.png">
             </a>
-            <%= search_form_for(@search_header, url: users_path) do |f| %>
+            <%= search_form_for(@q, url: search_path) do |f| %>
               <div class="header-sharch d-lg-inline-block d-none">
-                <%= f.search_field :area_cont, class: "form-control", placeholder: "エリア" %>
+                <%= f.search_field :rooms_address_cont, class: "form-control", placeholder: "エリア" %>
                 <i class="fas fa-map-marker-alt">
                 </i>
               </div>
               <div class="header-sharch d-lg-inline-block d-none">
-                <%= f.search_field :keyword_cont, class: "form-control", placeholder: "キーワード" %>
+                <%= f.search_field :rooms_introduction_cont, class: "form-control", placeholder: "キーワード" %>
                 <i class="fas fa-search">
                 </i>
               </div>

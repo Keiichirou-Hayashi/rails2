@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :set_search_header, only: [:new, :create]
 
   # GET /resource/sign_up
   # def new
@@ -10,9 +11,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(registration_params)
+    if @user.save
+      flash[:notice] = "新規登録しました"
+      redirect_to user_path(current_user.id)
+    else
+      render :new
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -59,4 +66,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def set_search_header
+    @search_header = User.ransack(params[:q])
+    if @search_header
+      @users = @search_header.result(distinct: true)
+    end
+  end
+
+  def registration_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
+
 end
+

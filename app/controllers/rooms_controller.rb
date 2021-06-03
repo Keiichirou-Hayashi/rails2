@@ -1,20 +1,20 @@
 class RoomsController < ApplicationController
 
-  before_action :set_search_header, only: [:index, :new, :posts, :show, :create]
 
   def index
     @rooms = Room.all
     @users = User.all
-    @search = Room.ransack(params[:q])
-    @rooms = @search.result(distinct: true)
   end
 
-  def search
-  end
+    def search
+      @rooms = Room.all
+      @q = User.search(search_params)
+      @students = @q.result(distinct: true)
+    end
 
   def new
     @room = Room.new
-    @user = User.find(params[:id])
+    @user = User.new
   end 
 
   def create
@@ -32,6 +32,8 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @user = User.find_by(oarams[:user_id])
+    @room = Room.find_by(params[:room_id])
   end
 
   def posts
@@ -45,9 +47,7 @@ class RoomsController < ApplicationController
   def destroy
   end
 
-  def search
-    @results = @q.result
-  end
+
 
   private
 
@@ -56,6 +56,10 @@ class RoomsController < ApplicationController
     if @search_header
       @users = @search_header.result(distinct: true)
     end
+  end
+
+  def search_params
+    params.require(:q).permit!
   end
 
   def room_params

@@ -2,6 +2,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  margin: 0;
 }
 body {
   margin: 0;
@@ -36,6 +37,7 @@ p {
 a {
   color: #007bff;
   text-decoration: none;
+  background-color: transparent;
 }
 a{
   color: #000;
@@ -43,17 +45,49 @@ a{
 table {
   border-collapse: collapse;
 }
-//完成後、いらない場合は削除する
+th {
+  text-align: inherit;
+}
+.room-posts table, .reservations table {
+  min-width: 800px;
+}
 button, input {
   overflow: visible;
 }
-//ここまで
-
 button, input, optgroup, select, textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-lg-6, .col-6, .col-lg-3, .col-md-12, .col-ms6, .col-lg-4, .col-xl-3, .col-lg-10, .col-md-12 {
+  position: relative;
+  width: 100%;
+  padding: 0 15px;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.room-posts table tbody td, .reservations table tbody td {
+  padding: 10px;
+}
+room-posts table tbody .posts-name, .reservations table tbody .posts-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #909090;
+}
+.room-posts table tbody .posts-content, .reservations table tbody .posts-content {
+  max-width: 400px;
 }
 
 //disabled
@@ -156,11 +190,6 @@ img {
   color: #fff;
   border-color: #007bff;
 }
-.btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
 .btn-primary {
   background-color: #4a90e2!important;
 }
@@ -191,7 +220,144 @@ img {
   box-sizing: border-box;
 }
 
-//index.html.erb
+//users/index.html.erb
+.room {
+  width: 100%;
+  padding: 30px 60px;
+}
+.pb-4, .py-4 {
+  padding-bottom: 1.5rem!important;
+}
+.h4, h4 {
+  font-size: 1.5rem;
+}
+@media screen and(min-width: 576px){
+  .col-sm-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media screen and(min-width: 992px){
+  .col-lg-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+@media screen and(min-width: 1200px){
+  .col-xl-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+.room-frame-inner {
+  border: 1px solid #e2e2e2;
+  margin-bottom: 10px;
+}
+.room-image-out {
+  position: relative;
+  width: 100%;
+  background: #F6F8F9;
+  height: 200px;
+}
+.room-image {
+  width: 100%;
+  height: 180px;
+  position: absolute;
+  top: 20px;
+  object-fit: cover;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+.room-profile {
+  width: 100%;
+  padding: 15px;
+}
+.room-profile p {
+  word-break: break-all;
+}
+.room-profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #909090;
+}
+.price-icon::before {
+  content: "￥";
+  padding-right: 3px;
+}
+.room-posts-image, .reservations-image {
+  width: 240px;
+  height: 140px;
+  object-fit: cover;
+}
+.room-new {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 15px;
+}
+.room-new .room-view {
+  background-color: #F6F8F9;
+  border-left: 2px solid #e2e2e2;
+}
+@media screen and(min-width: 992px){
+  .col-lg-10 {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+}
+.room-new .room-view-box {
+  max-width: 880px;
+  background-color: #fff;
+  border: 1px solid #eaedef;
+  margin: 50px auto;
+  text-align: center;
+}
+.new_room table {
+  margin: auto;
+}
+.new_room label {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+#room_room_name, #room_price, #room_address {
+  padding: 10px 170px 10px 0;
+  margin-top: 20px;
+}
+#room_introduction {
+  margin-top: 20px;
+  padding: 40px 160px 20px 0;
+}
+#room_room_image {
+  margin-left: 50px;
+  padding-right: 110px;
+  margin-top: 20px;
+}
+.room_new_btn {
+  margin-top: 10px;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+}
+.room_new_btn li {
+  margin-top: 10px;
+}
+.room-profile-city {
+  font-size: 16px;
+  font-weight: bold;
+}
+.room-profile-price {
+  text-align: right;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+//rooms/index.html.erb
 .top .top-main {
   background-image: url(/assets/img_cover_top.jpg);
   background-size: cover;
@@ -226,16 +392,11 @@ img {
     max-width: 50%;
   }
 }
-.col-lg-6, .col-6, .col-lg-3 {
-  position: relative;
-  width: 100%;
-  padding: 0 15px;
-}
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+@media screen and(min-width: 768px){
+  .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 .top .form-fream {
   height: 650px;
@@ -299,10 +460,108 @@ label {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
+//sign_in
+.device {
+  padding-top: 36px;
+  font-size: 16px;
+}
+@media screen and(min-width: 576px){
+  .container {
+    max-width: 540px;
+  }
+}
+@media screen and(min-width: 768px){
+  .container {
+    max-width: 720px;
+  }
+}
+@media screen and(min-width: 992px){
+  .container {
+    max-width: 960px;
+  }
+}
+@media screen and(min-width: 1200px){
+  .container {
+    max-width: 1140px;
+  }
+}
+.device-frame {
+  max-width: 600px;
+  text-align: center;
+  padding: 24px;
+  margin: 0px auto;
+  background-color: white;
+  border-radius: 4px;
+}
+.device h2 {
+  font-size: 18px;
+}
+.my-4 {
+  margin-bottom: 1.5rem!important;
+}
+.device_inner {
+  width: 360px;
+  margin: 0px auto;
+}
+.form-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+.required-b::before {
+  content: "必須";
+  color: #fff;
+  background-color: #ff0000a8;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0 5px;
+}
+
+//rooms/new.html.erb
+.room-new {
+  width: 100%;
+}
+
 //ハンバーガーメニュー
-.header-nav-menu {
+.hamberger-nav-menu {
   background-color: #fff;
-  
+  border: 3px solid #F6F8F9;
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  padding: 15px;
+  z-index: 1000;
+}
+.dropdown-toggle {
+  background: black;
+  border: none;
+  padding-bottom: 0;
+  padding-top: 0;
+  height: 18px;
+}
+.dropdown-toggle p {
+  font-size: 14px;
+}
+.nav {
+  background-color: #fff;
+}
+
+.dropdown-menu li {
+  line-height: 30px;
+  font-size: 16px;
+  padding: 3px 5px;
+}
+.dropdown-item {
+  display: block;
+  position: relative;
 }
 
 //reservation/index.html/erb
@@ -321,10 +580,6 @@ label {
   padding-bottom: 24px;
 }
 
-.reservations table {
-  min-width: 800px;
-}
-
 .reservations table thead tr {
   border-top: 1px solid #eaedef;
   border-bottom: 1px solid #eaedef;
@@ -336,8 +591,48 @@ label {
   letter-spacing: 1px;
 }
 
-//_host.html.erb
+//reservations/show.html.erb
 
-.d-sm-inline-block {
-  
+.user {
+  width: 100%;
+}
+.user .user-view {
+  background-color: #F6F8F9;
+  border-left: 2px solid #e2e2e2;
+}
+@media screen and(min-width: 760px){
+  .col-md-12{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.user .user-view-box {
+  max-width: 880px;
+  background-color: #fff;
+  border: 1px solid #eaedef;
+  margin: 30px auto;
+}
+.user .update-content {
+  text-align: center;
+}
+.d-flex{
+  width: 100%;
+}
+.user-view-box table tbody tr {
+  border-bottom: 1px solid #eaedef;
+    padding: 20px;
+    margin: 0 15px;
+    font-size: 16px;
+}
+.user-view-box table tbody tr td {
+    margin: 0 15px;
+    font-size: 16px;
+}
+.user-view-box table {
+  margin: auto;
+  height: 300px;
+}
+.return_to_top {
+  font-size: 16px;
+  padding-left: 400px;
 }
