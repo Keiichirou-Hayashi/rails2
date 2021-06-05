@@ -6,7 +6,6 @@
       <% @rooms.each do |room| %>
         <div class="col-sm-6 col-lg-4 col-xl-3">
           <div class="room-frame-inner">
-            <div class="d-flex"> 
               <%= link_to new_user_room_reservation_path(current_user.id, room_id: room.id) do %>
                 <div class="room-image-out">
                   <%= image_tag room.room_image.thumb.url, alt: "部屋画像" ,class: "room-image" %>
@@ -18,7 +17,6 @@
                 </div>
               </a>
               <% end %>
-            </div>
           </div>
         </div>
       <% end %>
@@ -29,8 +27,7 @@
     <div class="row">
       <% @rooms.each do |room| %>
         <div class="col-sm-6 col-lg-4 col-xl-3">
-          <div class="room-frame-inner">
-            <div class="d-flex"> 
+          <div class="room-frame-inner"> 
               <%= link_to sign_in_path do %>
                 <div class="room-image-out">
                   <%= image_tag room.room_image.thumb.url, alt: "部屋画像" ,class: "room-image" %>
@@ -42,7 +39,6 @@
                   </div>
                 </a>
               <% end %>
-            </div>
           </div>
         </div>
       <% end %>

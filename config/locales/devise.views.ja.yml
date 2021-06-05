@@ -10,7 +10,7 @@ ja:
         username: "ユーザー名"
     models:
       user: "ユーザ"
-  devise:
+  users:
     confirmations:
       new:
         resend_confirmation_instructions: "アカウント確認メール再送"

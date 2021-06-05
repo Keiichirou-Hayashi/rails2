@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
-
- 
+before_action :search_form, only: [:index, :show] 
 
   def index
-    @search = User.ransack(params[:search])
-    @users = @search.result(distinct: true)
-    @rooms = Room.all
   end
 
   def new
@@ -32,23 +28,16 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def search
-    @rooms = Room.all
-    @q = User.search(search_params)
-    @students = @q.result(distinct: true)
-  end
-
   private
 
-  def set_search_header
-    @search_header = User.ransack(params[:q])
-    if @search_header
-      @users = @search_header.result(distinct: true)
-    end
+  def search_form
+    @users = User.all
+    @q = Room.search(search_params)
+    @rooms = @q.result(distinct: true)
   end
 
   def search_params
-    params.require(:q).permit!
+    params.permit(:address_cont, :room_name_or_introduction_or_address_cont)
   end
 
 end

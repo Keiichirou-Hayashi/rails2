@@ -6,11 +6,11 @@ class RoomsController < ApplicationController
     @users = User.all
   end
 
-    def search
-      @rooms = Room.all
-      @q = User.search(search_params)
-      @students = @q.result(distinct: true)
-    end
+  def search
+    @users = User.all
+    @q = Room.search(search_params)
+    @rooms = @q.result(distinct: true)
+  end
 
   def new
     @room = Room.new
@@ -51,15 +51,8 @@ class RoomsController < ApplicationController
 
   private
 
-  def set_search_header
-    @search_header = User.ransack(params[:q])
-    if @search_header
-      @users = @search_header.result(distinct: true)
-    end
-  end
-
   def search_params
-    params.require(:q).permit!
+    params.require(:q).permit(:address_cont, :room_name_or_introduction_or_address_cont)
   end
 
   def room_params

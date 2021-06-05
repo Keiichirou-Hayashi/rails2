@@ -59,6 +59,7 @@ group :development do
   gem 'popper_js'
   gem 'simple_form'
   gem 'kaminari'
+  gem 'bullet'
 end
 
 group :test do

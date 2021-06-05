@@ -7,6 +7,7 @@ class ReservationsController < ApplicationController
   def index
     @rooms = Room.all
     @reservations = Reservation.all
+    @reservations = Reservation.includes(:room)
   end
 
   def new
@@ -18,7 +19,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = current_user.reservations.create(reservation_params)
     if @reservation.save
-      flash[:notice] = "予約を完了しました"
+      flash[:notice]= "予約を完了しました"
       redirect_to user_room_reservation_path(id: @reservation.id)
     else
       render :new
@@ -37,13 +38,6 @@ class ReservationsController < ApplicationController
 
   private
 
-
-  def set_search_header
-    @search_header = User.ransack(params[:q])
-    if @search_header
-      @users = @search_header.result(distinct: true)
-    end
-  end
 
   def reservation_params
     params.require(:reservation).permit(:start_date, :end_date, :number_of_people, :total_price,).merge(user_id: current_user.id, room_id: params[:room_id])

@@ -325,8 +325,9 @@ img {
   margin-bottom: 0;
 }
 #room_room_name, #room_price, #room_address {
-  padding: 10px 170px 10px 0;
   margin-top: 20px;
+  width: 336px;
+  height: 38px;
 }
 #room_introduction {
   margin-top: 20px;
@@ -362,7 +363,7 @@ img {
   background-image: url(/assets/img_cover_top.jpg);
   background-size: cover;
   width: 100%;
-  height: 650px;
+  height: 690px;
 }
 .container {
   width: 100%;

@@ -7,12 +7,12 @@
       <% end %>
       <%= search_form_for @q, url: search_room_path(id:current_user.id) do |f| %>
         <div class="header-sharch d-lg-inline-block d-none">
-          <%= f.search_field :rooms_address_cont, class: "form-control", placeholder: "エリア" %>
+          <%= f.search_field :address_cont, class: "form-control", placeholder: "エリア" %>
           <i class="fas fa-map-marker-alt">
           </i>
         </div>
         <div class="header-sharch d-lg-inline-block d-none">
-          <%= f.search_field :rooms_introduction_cont, class: "form-control", placeholder: "キーワード" %>
+          <%= f.search_field :room_name_or_introduction_or_address_cont, class: "form-control", placeholder: "キーワード" %>
           <i class="fas fa-search">
           </i>
         </div>

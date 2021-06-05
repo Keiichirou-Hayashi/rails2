@@ -13,8 +13,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_search
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @users = User.all
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result(distinct: true)
   end
 
   protected
