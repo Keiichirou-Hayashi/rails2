@@ -7,7 +7,6 @@ class RoomsController < ApplicationController
   end
 
   def search
-    @users = User.all
     @q = Room.search(search_params)
     @rooms = @q.result(distinct: true)
   end
