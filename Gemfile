@@ -42,6 +42,24 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'devise'
+  gem 'omniauth-twitter'
+  gem 'bcrypt'
+  gem 'rails4-autocomplete'
+  gem 'jquery-rails'
+  gem 'devise-i18n'
+  gem 'devise-i18n-views'
+  gem 'carrierwave'
+  gem 'rmagick'
+  gem 'pry-rails'
+  gem 'rails-i18n'
+  gem 'mini_magick'
+  gem 'ransack', '2.4.1'
+  gem 'bootstrap'
+  gem 'popper_js'
+  gem 'simple_form'
+  gem 'kaminari'
+  gem 'bullet'
 end
 
 group :test do

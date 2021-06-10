@@ -1,0 +1,41 @@
+    <div class="container-fiuld room-new">
+        <div class="col-lg-10 room-view">
+            <div class="room-view-box">
+                <%= form_for @room do |f| %>
+
+                <h2>ルーム情報登録</h2>
+
+                <%= render "devise/shared/error", obj: @room %>
+                <table>
+                    <tr>
+                        <th><%= f.label :room_name ,'ルーム名' %></th>
+                        <td><%= f.text_field :room_name, placeholder: 'ルーム名を入力' %></td>
+                    </tr>
+                    <tr>
+                        <th><%= f.label :introduction ,'ルーム紹介' %></th>
+                        <td><%= f.text_area :introduction, placeholder: 'ルーム説明を入力' %></td>
+                    </tr>
+                    <tr>
+                        <th><%= f.label :price ,'料金' %></th>
+                        <td><%= f.number_field :price, placeholder: '料金を入力' %></td>
+                    </tr>
+                    <tr>
+                        <th><%= f.label :address ,'住所' %></th>
+                        <td><%= f.text_field :address, placeholder: '住所を入力' %></td>
+                    </tr>
+                    <tr>
+                        <%= image_tag(@room.room_image.thumb.url) if @room.room_image? %>
+                        <th><%= f.label :room_image, 'ルーム画像' %></th>
+                        <td><%= f.file_field :room_image, placeholder: 'ルーム画像を入力' %></td>
+                    </tr>
+                </table>
+                <div>
+                    <ul class="room_new_btn">
+                        <li><%= f.submit '登録完了する' %><li>
+                        <li><%= link_to "トップ画面に戻る", user_path(current_user.id) %></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
